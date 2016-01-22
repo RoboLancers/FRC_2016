@@ -1,6 +1,10 @@
 package org.usfirst.frc.team321.robot.commands;
 
+import org.usfirst.frc.team321.joystick_controller_types.JoystickControllerType;
+import org.usfirst.frc.team321.joystick_controller_types.TankDrive;
 import org.usfirst.frc.team321.robot.Robot;
+import org.usfirst.frc.team321.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team321.utilities.JoystickUtil;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,17 +13,21 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveWithJoystick extends Command {
 	
+	private JoystickControllerType joystickControllerType;
+	
     public MoveWithJoystick() {
         requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//Change to whatever joystick controller type you'd like
+    	joystickControllerType = new TankDrive();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.drive();
+    	joystickControllerType.drive();
     }
 
     // Make this return true when this Command no longer needs to run execute()
