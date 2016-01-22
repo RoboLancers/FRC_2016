@@ -17,8 +17,7 @@ public class Pneumatics extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public boolean isCompressorSafeToUse(){
-    	
+    public boolean isCompressorSafeToUse(){	
     	if((compressor.getCompressorCurrentTooHighFault() && !compressor.getCompressorCurrentTooHighStickyFault()) ||
    			(compressor.getCompressorNotConnectedFault() && !compressor.getCompressorNotConnectedStickyFault()) || 
    			(compressor.getCompressorShortedFault() && !compressor.getCompressorShortedStickyFault())){
@@ -29,12 +28,10 @@ public class Pneumatics extends Subsystem {
     }
     	
     public double getPressure(){
-    	
     	return compressor.getCompressorCurrent();
     }
     
     public void regulateCompressor(){
-    	
     	if(!compressor.getPressureSwitchValue() && !compressor.enabled()
     			&& isCompressorSafeToUse()){
     		compressor.start();
