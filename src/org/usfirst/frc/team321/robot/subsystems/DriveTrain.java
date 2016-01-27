@@ -44,7 +44,7 @@ public class DriveTrain extends Subsystem {
 
 	public void setFrontLeftPower(double power) {
 		if(Math.abs(power) <= 1){
-			DriveTrain.frontLeft.set(power);;
+			DriveTrain.frontLeft.set(power);
 		}else{
 			throw new RuntimeException("frontLeft power is greater than 1 or less than -1");
 		}
@@ -56,7 +56,7 @@ public class DriveTrain extends Subsystem {
 
 	public void setFrontRightPower(double power) {
 		if(Math.abs(power) <= 1){
-			DriveTrain.frontRight.set(power);;
+			DriveTrain.frontRight.set(power);
 		}else{
 			throw new RuntimeException("frontRight power is greater than 1 or less than -1");
 		}
@@ -68,7 +68,7 @@ public class DriveTrain extends Subsystem {
 
 	public void setRearLeftPower(double power) {
 		if(Math.abs(power) <= 1){
-			DriveTrain.rearLeft.set(power);;
+			DriveTrain.rearLeft.set(power);
 		}else{
 			throw new RuntimeException("rearLeft power is greater than 1 or less than -1");
 		}
@@ -80,7 +80,7 @@ public class DriveTrain extends Subsystem {
 
 	public void setRearRightPower(double power) {
 		if(Math.abs(power) <= 1){
-			DriveTrain.rearLeft.set(power);;
+			DriveTrain.rearLeft.set(power);
 		}else{
 			throw new RuntimeException("rearRight power is greater than 1 or less than -1");
 		}
