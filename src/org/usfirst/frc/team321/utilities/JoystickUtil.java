@@ -15,7 +15,7 @@ public class JoystickUtil {
 	}
 
 	public static double getLeftYAxisValue(){
-		if(Math.abs(OI.driveStick.getRawAxis(0)) > tolerance){
+		if(Math.abs(OI.driveStick.getRawAxis(1)) > tolerance){
 			return OI.driveStick.getRawAxis(1);
 		}else{
 			return 0;
@@ -23,16 +23,16 @@ public class JoystickUtil {
 	}
 
 	public static double getRightXAxisValue(){
-		if(Math.abs(OI.driveStick.getRawAxis(0)) > tolerance){
-			return OI.driveStick.getRawAxis(1);
+		if(Math.abs(OI.driveStick.getRawAxis(2)) > tolerance){
+			return OI.driveStick.getRawAxis(2);
 		}else{
 			return 0;
 		}
 	}
-
+	
 	public static double getRightYAxisValue(){
-		if(Math.abs(OI.driveStick.getRawAxis(0)) > tolerance){
-			return OI.driveStick.getRawAxis(1);
+		if(Math.abs(OI.driveStick.getRawAxis(3)) > tolerance){
+			return OI.driveStick.getRawAxis(3);
 		}else{
 			return 0;
 		}
