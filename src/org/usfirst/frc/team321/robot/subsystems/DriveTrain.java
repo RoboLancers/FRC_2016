@@ -21,8 +21,8 @@ public class DriveTrain extends Subsystem {
     	
     	leftFront = new Talon(RobotMap.LEFT_FRONT_MOTOR);
     	leftMiddle = new Talon(RobotMap.LEFT_MIDDLE_MOTOR);
-    	leftBack = new Talon(RobotMap.RIGHT_FRONT_MOTOR);
-    	rightFront = new Talon(RobotMap.LEFT_BACK_MOTOR);
+    	leftBack = new Talon(RobotMap.LEFT_BACK_MOTOR);
+    	rightFront = new Talon(RobotMap.RIGHT_FRONT_MOTOR);
     	rightMiddle = new Talon(RobotMap.RIGHT_MIDDLE_MOTOR);
     	rightBack = new Talon(RobotMap.RIGHT_BACK_MOTOR);
     }
