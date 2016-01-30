@@ -4,9 +4,8 @@ import org.usfirst.frc.team321.robot.RobotMap;
 import org.usfirst.frc.team321.robot.commands.MoveWithJoystick;
 import org.usfirst.frc.team321.utilities.MotorValueOutOfBoundsException;
 
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -20,12 +19,12 @@ public class DriveTrain extends Subsystem {
 	private DriveTrain(){
     	super("Drive Train");
     	
-    	leftFront = new CANTalon(RobotMap.LEFT_FRONT_MOTOR);
-    	leftMiddle = new CANTalon(RobotMap.LEFT_MIDDLE_MOTOR);
-    	leftBack = new CANTalon(RobotMap.RIGHT_FRONT_MOTOR);
-    	rightFront = new CANTalon(RobotMap.LEFT_BACK_MOTOR);
-    	rightMiddle = new CANTalon(RobotMap.RIGHT_MIDDLE_MOTOR);
-    	rightBack = new CANTalon(RobotMap.RIGHT_BACK_MOTOR);
+    	leftFront = new Talon(RobotMap.LEFT_FRONT_MOTOR);
+    	leftMiddle = new Talon(RobotMap.LEFT_MIDDLE_MOTOR);
+    	leftBack = new Talon(RobotMap.RIGHT_FRONT_MOTOR);
+    	rightFront = new Talon(RobotMap.LEFT_BACK_MOTOR);
+    	rightMiddle = new Talon(RobotMap.RIGHT_MIDDLE_MOTOR);
+    	rightBack = new Talon(RobotMap.RIGHT_BACK_MOTOR);
     	
     }
 	
