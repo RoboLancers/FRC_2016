@@ -2,6 +2,7 @@
 package org.usfirst.frc.team321.robot;
 
 import org.usfirst.frc.team321.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team321.robot.subsystems.Intake;
 import org.usfirst.frc.team321.robot.subsystems.Pneumatics;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -13,6 +14,7 @@ public class Robot extends IterativeRobot {
 
 	public static DriveTrain driveTrain;
 	public static Pneumatics pneumatics;
+	public static Intake intake;
 	public static OI oi;
 
     Command autonomousCommand;
@@ -20,6 +22,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		driveTrain = DriveTrain.getInstance();
+		intake = Intake.getInstance();
 		pneumatics = new Pneumatics();
     }
 	

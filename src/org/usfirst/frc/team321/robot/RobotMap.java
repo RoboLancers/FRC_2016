@@ -13,4 +13,6 @@ public class RobotMap {
 	public static final int RIGHT_FRONT_MOTOR = 4;
 	public static final int RIGHT_MIDDLE_MOTOR = 5;
 	public static final int RIGHT_BACK_MOTOR = 6;
+	
+	public static final int INTAKE_MOTOR = 7;
 }
