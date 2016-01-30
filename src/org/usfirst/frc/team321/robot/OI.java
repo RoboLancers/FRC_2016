@@ -20,16 +20,19 @@ public class OI {
 		driveStick = new Joystick(0);
 		maniStick = new Joystick(1);
 		
+		driveBtn = new JoystickButton[12];
+		maniBtn = new JoystickButton[12];
+		
 		for(int i = 0; i < driveBtn.length; i++){
 			driveBtn[i] = new JoystickButton(driveStick, i + 1);
 		}
-		
-		for(int j = 0; j < maniBtn.length; j++){
-			maniBtn[j] = new JoystickButton(maniStick, j + 1);
+
+		for(int i = 0; i < maniBtn.length; i++){
+			maniBtn[i] = new JoystickButton(maniStick, i + 1);
 		}
 		
-		maniBtn[0].whenPressed(new UseIntake(Intake.INTAKE));
-		maniBtn[1].whenPressed(new UseIntake(Intake.OUTTAKE));
+		//maniBtn[0].whenPressed(new UseIntake(Intake.INTAKE));
+		//maniBtn[1].whenPressed(new UseIntake(Intake.OUTTAKE));
 	}
 	
 	
