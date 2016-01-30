@@ -2,7 +2,7 @@ package org.usfirst.frc.team321.robot.subsystems;
 
 import org.usfirst.frc.team321.robot.RobotMap;
 import org.usfirst.frc.team321.robot.commands.MoveWithJoystick;
-import org.usfirst.frc.team321.utilities.JoystickUtil;
+import org.usfirst.frc.team321.utilities.MotorValueOutOfBoundsException;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -30,8 +30,7 @@ public class DriveTrain extends Subsystem {
     }
 	
 	public static DriveTrain getInstance(){
-		
-		if(driveTrain == null){
+		if(null == driveTrain){
 			driveTrain = new DriveTrain();
 		}
 		return driveTrain;
@@ -47,7 +46,7 @@ public class DriveTrain extends Subsystem {
 			leftMiddle.set(power);
 			leftBack.set(power);
 		}else{
-			throw new RuntimeException("Power was set greater than 1 or less than -1");
+			throw new MotorValueOutOfBoundsException();
 		}
 	}
 	
@@ -57,7 +56,7 @@ public class DriveTrain extends Subsystem {
 			rightMiddle.set(power);
 			rightBack.set(power);
 		}else{
-			throw new RuntimeException("Power was set greater than 1 or less than -1");
+			throw new MotorValueOutOfBoundsException();
 		}
 	}
 	
