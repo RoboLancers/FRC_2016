@@ -25,9 +25,32 @@ public class DriveTrain extends Subsystem {
     	rightFront = new Talon(RobotMap.LEFT_BACK_MOTOR);
     	rightMiddle = new Talon(RobotMap.RIGHT_MIDDLE_MOTOR);
     	rightBack = new Talon(RobotMap.RIGHT_BACK_MOTOR);
-    	
     }
 	
+	public SpeedController getLeftFront() {
+		return leftFront;
+	}
+
+	public SpeedController getLeftBack() {
+		return leftBack;
+	}
+
+	public SpeedController getLeftMiddle() {
+		return leftMiddle;
+	}
+
+	public SpeedController getRightFront() {
+		return rightFront;
+	}
+
+	public SpeedController getRightMiddle() {
+		return rightMiddle;
+	}
+
+	public SpeedController getRightBack() {
+		return rightBack;
+	}
+
 	public static DriveTrain getInstance(){
 		if(null == driveTrain){
 			driveTrain = new DriveTrain();
