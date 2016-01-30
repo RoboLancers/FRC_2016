@@ -3,8 +3,6 @@ package org.usfirst.frc.team321.robot.commands;
 import org.usfirst.frc.team321.joystick_controller_types.JoystickControllerType;
 import org.usfirst.frc.team321.joystick_controller_types.TankDrive;
 import org.usfirst.frc.team321.robot.Robot;
-import org.usfirst.frc.team321.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team321.utilities.JoystickUtil;
 
 import edu.wpi.first.wpilibj.command.Command;
 
