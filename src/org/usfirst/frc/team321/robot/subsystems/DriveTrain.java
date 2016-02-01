@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
    
 	private static DriveTrain driveTrain;
-	private static SpeedController leftFront, leftBack, leftMiddle, rightFront, rightMiddle, rightBack;
+	public static SpeedController leftFront, leftBack, leftMiddle, rightFront, rightMiddle, rightBack;
 	
 	private DriveTrain(){
     	super("Drive Train");
@@ -26,30 +26,6 @@ public class DriveTrain extends Subsystem {
     	rightMiddle = new Talon(RobotMap.RIGHT_MIDDLE_MOTOR);
     	rightBack = new Talon(RobotMap.RIGHT_BACK_MOTOR);
     }
-	
-	public SpeedController getLeftFront() {
-		return leftFront;
-	}
-
-	public SpeedController getLeftBack() {
-		return leftBack;
-	}
-
-	public SpeedController getLeftMiddle() {
-		return leftMiddle;
-	}
-
-	public SpeedController getRightFront() {
-		return rightFront;
-	}
-
-	public SpeedController getRightMiddle() {
-		return rightMiddle;
-	}
-
-	public SpeedController getRightBack() {
-		return rightBack;
-	}
 
 	public static DriveTrain getInstance(){
 		if(null == driveTrain){
@@ -62,7 +38,7 @@ public class DriveTrain extends Subsystem {
         setDefaultCommand(new MoveWithJoystick());
     }
 
-	public void setLeftPowers(double power){
+	public static void setLeftPowers(double power){
 		if(Math.abs(power) <= 1){
 			leftFront.set(power);
 			leftMiddle.set(power);
@@ -72,7 +48,7 @@ public class DriveTrain extends Subsystem {
 		}
 	}
 	
-	public void setRightPowers(double power){
+	public static void setRightPowers(double power){
 		if(Math.abs(power) <= 1){
 			rightFront.set(power);
 			rightMiddle.set(power);
@@ -82,9 +58,9 @@ public class DriveTrain extends Subsystem {
 		}
 	}
 	
-	public void setAllPowers(double power){
+	public static void setAllPowers(double power){
 		setLeftPowers(power);
-		setRightPowers(power);
+		setRightPowers(-power);
 	}
 }
 
