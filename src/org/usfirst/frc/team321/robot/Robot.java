@@ -15,15 +15,18 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Pneumatics pneumatics;
 	public static Intake intake;
+	
 	public static OI oi;
 
     Command autonomousCommand;
 
     public void robotInit() {
-		oi = new OI();
+		
 		driveTrain = DriveTrain.getInstance();
 		intake = Intake.getInstance();
 		pneumatics = new Pneumatics();
+		
+		oi = new OI();
     }
 	
 	public void disabledPeriodic() {
