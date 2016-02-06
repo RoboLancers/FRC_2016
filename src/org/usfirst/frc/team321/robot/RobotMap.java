@@ -14,5 +14,5 @@ public class RobotMap {
 	public static final int RIGHT_MIDDLE_MOTOR = 1;
 	public static final int RIGHT_BACK_MOTOR = 2;
 	
-	public static final int INTAKE_MOTOR = 7;
+	public static final int INTAKE = 7;
 }
