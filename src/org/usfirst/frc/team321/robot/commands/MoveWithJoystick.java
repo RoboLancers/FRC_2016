@@ -26,12 +26,11 @@ public class MoveWithJoystick extends Command {
     protected void execute() {
 
     	if(rcDrive){
-    		if(Math.abs(JoystickUtil.getLeftYAxisValue()) > 0){
-    			DriveTrain.setAllPowers(JoystickUtil.getLeftYAxisValue());
-    		}else{
-    			DriveTrain.setLeftPowers(JoystickUtil.getRightXAxisValue());
-    			DriveTrain.setRightPowers(JoystickUtil.getRightXAxisValue());
-    		}
+    		double[] motorValues = JoystickUtil.arcadeDrive(JoystickUtil.getLeftYAxisValue(),
+    				JoystickUtil.getRightXAxisValue(), true);
+    		
+    		DriveTrain.setLeftPowers(motorValues[0]);
+    		DriveTrain.setRightPowers(motorValues[1]);
     	}else{
     		DriveTrain.setLeftPowers(JoystickUtil.getLeftYAxisValue());
 	    	DriveTrain.setRightPowers(JoystickUtil.getRightYAxisValue());
