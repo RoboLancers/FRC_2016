@@ -20,7 +20,7 @@ public class Intake extends Subsystem {
 	private static Intake intake;
 	
 	private Intake(){
-		intakeMotor = new CANTalon(RobotMap.INTAKE_MOTOR);
+		intakeMotor = new CANTalon(RobotMap.INTAKE);
 	}
 	
 	public static Intake getInstance(){
