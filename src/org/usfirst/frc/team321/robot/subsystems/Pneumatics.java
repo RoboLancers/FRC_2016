@@ -1,6 +1,7 @@
 package org.usfirst.frc.team321.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,5 +19,9 @@ public class Pneumatics extends Subsystem {
 	
     public void initDefaultCommand() {
     }    
+    
+    public Value getGear(){
+    	return leftDoubleSolenoid.get();
+    }
 }
 
