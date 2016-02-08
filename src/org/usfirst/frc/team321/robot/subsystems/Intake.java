@@ -12,10 +12,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 	
-    public static final int OUTTAKE = -1;
-	public static final int INTAKE = 1;
-	public static final int STOP = 0;
-	
+	public enum IntakeValues {
+		OUTTAKE(-1), INTAKE(1), STOP(0);
+		
+		private int value;
+		
+		private IntakeValues(int value){
+			this.value = value;
+		}
+		
+		public int getValue(){
+			return value;
+		}
+	}
+   
 	private SpeedController intakeMotor;
 	private static Intake intake;
 	
