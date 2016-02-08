@@ -23,14 +23,20 @@ public class SwitchGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//TODO: Check for kOff?
     	if(Pneumatics.leftDoubleSolenoid.get() == DoubleSolenoid.Value.kForward
-    			&& Pneumatics.rightDoubleSolenoid.get() == DoubleSolenoid.Value.kForward){
+    			//&& Pneumatics.rightDoubleSolenoid.get() == DoubleSolenoid.Value.kForward
+    			){
+    		//Pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    		//Pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    		
     		Pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    		Pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    	}else{
-    		Pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
     		Pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    	}else{
+    		//Pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    		//Pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    		
+    		Pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    		Pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
     	}
     	
     	hasFinished = true;
