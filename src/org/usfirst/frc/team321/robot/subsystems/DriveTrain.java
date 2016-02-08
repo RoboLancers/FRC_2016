@@ -15,6 +15,7 @@ public class DriveTrain extends Subsystem {
    
 	private static DriveTrain driveTrain;
 	public static SpeedController leftFront, leftBack, leftMiddle, rightFront, rightMiddle, rightBack;
+	public static final int TICKS_PER_ROTATION = 1420;
 	
 	private DriveTrain(){
     	super("Drive Train");
