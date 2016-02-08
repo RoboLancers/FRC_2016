@@ -12,4 +12,12 @@ public class RobotUtil {
 			return input;
 		}
 	}
+	
+	public static double squareAndKeepSign(double num){	
+		if(num < 0){
+			return -(num * num);
+		}else{
+			return num * num;
+		}
+	}
 }
