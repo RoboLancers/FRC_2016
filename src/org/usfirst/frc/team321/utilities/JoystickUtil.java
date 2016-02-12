@@ -39,6 +39,22 @@ public class JoystickUtil {
 		}
 	}
 	
+	public static double getLeftYAxisNormalized(){
+		return RobotUtil.squareAndKeepSign(getLeftYAxisValue());
+	}
+	
+	public static double getRightYAxisNormalized(){
+		return RobotUtil.squareAndKeepSign(getRightYAxisValue());
+	}
+	
+	public static double getLeftXAxisNormalized(){
+		return RobotUtil.squareAndKeepSign(getLeftXAxisValue());
+	}
+	
+	public static double getRightXAxisNormalized(){
+		return RobotUtil.squareAndKeepSign(getRightXAxisValue());
+	}
+	
 	public static double[] arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
 	    double leftMotorSpeed = 0;
 	    double rightMotorSpeed = 0;
