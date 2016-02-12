@@ -15,8 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
-	public static DriveTrain driveTrain;
-	public static Pneumatics pneumatics;
 	public static Intake intake;
 	
 	public static OI oi;
@@ -25,21 +23,21 @@ public class Robot extends IterativeRobot {
 
     public void robotInit() {
 		
-		driveTrain = DriveTrain.getInstance();
-		intake = Intake.getInstance();
-		pneumatics = new Pneumatics();
-		
 		oi = new OI();
     }
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		
-		String robotGear = (Robot.pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
+        String robotGear = (Pneumatics.getInstance().getGear() == DoubleSolenoid.Value.kForward) 
         		? "High Gear" : "Low Gear"; 
         SmartDashboard.putString("Robot Gear", robotGear);
         SmartDashboard.putNumber("Left Y Axis", JoystickUtil.getLeftYAxisValue());
         SmartDashboard.putNumber("Right Y Axis", JoystickUtil.getRightYAxisValue());
+        SmartDashboard.putString("Right pneumatic gear", 
+        		Pneumatics.getInstance().rightDoubleSolenoid.get().toString());
+        SmartDashboard.putString("Left pneumatic gear", 
+        		Pneumatics.getInstance().leftDoubleSolenoid.get().toString());
 	}
 
     public void autonomousInit() {
@@ -62,14 +60,15 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
-        String robotGear = (Robot.pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
+        String robotGear = (Pneumatics.getInstance().getGear() == DoubleSolenoid.Value.kForward) 
         		? "High Gear" : "Low Gear"; 
         SmartDashboard.putString("Robot Gear", robotGear);
         SmartDashboard.putNumber("Left Y Axis", JoystickUtil.getLeftYAxisValue());
         SmartDashboard.putNumber("Right Y Axis", JoystickUtil.getRightYAxisValue());
-        SmartDashboard.putString("Right pneumatic gear", Pneumatics.rightDoubleSolenoid.get().toString());
-        SmartDashboard.putString("Left pneumatic gear", Pneumatics.leftDoubleSolenoid.get().toString());
-     
+        SmartDashboard.putString("Right pneumatic gear", 
+        		Pneumatics.getInstance().rightDoubleSolenoid.get().toString());
+        SmartDashboard.putString("Left pneumatic gear", 
+        		Pneumatics.getInstance().leftDoubleSolenoid.get().toString());
     }
 
     public void testPeriodic() {
