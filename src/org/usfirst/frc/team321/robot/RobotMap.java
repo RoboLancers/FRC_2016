@@ -14,5 +14,10 @@ public class RobotMap {
 	public static final int RIGHT_MIDDLE_MOTOR = 1;
 	public static final int RIGHT_BACK_MOTOR = 2;
 	
+	public static final int ENC_L_A = 0;
+	public static final int ENC_L_B = 1;
+	public static final int ENC_R_A = 2;
+	public static final int ENC_R_B = 3;
+	
 	public static final int INTAKE = 7;
 }
