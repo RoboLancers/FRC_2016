@@ -1,9 +1,7 @@
 package org.usfirst.frc.team321.robot.commands;
 
-import org.usfirst.frc.team321.robot.Robot;
 import org.usfirst.frc.team321.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team321.utilities.JoystickUtil;
-import org.usfirst.frc.team321.utilities.RobotUtil;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -16,7 +14,7 @@ public class MoveWithJoystick extends Command {
 	boolean rcDrive = false;
 	
     public MoveWithJoystick() {
-        requires(Robot.driveTrain);
+        requires(DriveTrain.getInstance());
     }
 
     // Called just before this Command runs the first time
@@ -32,8 +30,8 @@ public class MoveWithJoystick extends Command {
     		DriveTrain.setLeftPowers(motorValues[0]);
     		DriveTrain.setRightPowers(motorValues[1]);
     	}else{
-    		DriveTrain.setLeftPowers(RobotUtil.squareAndKeepSign(JoystickUtil.getLeftYAxisValue()));
-       		DriveTrain.setRightPowers(RobotUtil.squareAndKeepSign(JoystickUtil.getRightYAxisValue()));
+    		DriveTrain.setLeftPowers(JoystickUtil.getLeftYAxisNormalized());
+       		DriveTrain.setRightPowers(JoystickUtil.getRightYAxisNormalized());
      	}
     }
 
