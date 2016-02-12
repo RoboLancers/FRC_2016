@@ -14,7 +14,7 @@ public class SwitchGear extends Command {
 	boolean hasFinished = false;
 	
     public SwitchGear() {
-        requires(Robot.pneumatics);
+        requires(Pneumatics.getInstance());
     }
 
     // Called just before this Command runs the first time
@@ -23,20 +23,12 @@ public class SwitchGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Pneumatics.leftDoubleSolenoid.get() == DoubleSolenoid.Value.kForward
-    			//&& Pneumatics.rightDoubleSolenoid.get() == DoubleSolenoid.Value.kForward
-    			){
-    		//Pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    		//Pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    		
-    		Pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    		Pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    	if(Pneumatics.getInstance().leftDoubleSolenoid.get() == DoubleSolenoid.Value.kForward){
+    		Pneumatics.getInstance().leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    		Pneumatics.getInstance().rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
     	}else{
-    		//Pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    		//Pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    		
-    		Pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    		Pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    		Pneumatics.getInstance().leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    		Pneumatics.getInstance().rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
     	}
     	
     	hasFinished = true;
