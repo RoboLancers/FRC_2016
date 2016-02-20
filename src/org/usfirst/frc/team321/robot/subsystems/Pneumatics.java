@@ -9,11 +9,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Pneumatics extends Subsystem {
     
-	private static Pneumatics pneumatics;
 	public DoubleSolenoid leftDoubleSolenoid;
     public DoubleSolenoid rightDoubleSolenoid;
     
-	private Pneumatics() {
+	public Pneumatics() {
 		leftDoubleSolenoid = new DoubleSolenoid(0, 1);
 		rightDoubleSolenoid = new DoubleSolenoid(2, 3);
 	}
@@ -40,13 +39,6 @@ public class Pneumatics extends Subsystem {
 
 	public void setRightDoubleSolenoid(DoubleSolenoid rightDoubleSolenoid) {
 		this.rightDoubleSolenoid = rightDoubleSolenoid;
-	}
-
-	public static Pneumatics getInstance(){
-		if(null == pneumatics){
-			pneumatics = new Pneumatics();
-		}
-		return pneumatics;
 	}
 }
 
