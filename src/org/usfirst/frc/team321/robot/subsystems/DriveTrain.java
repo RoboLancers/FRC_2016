@@ -15,9 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
    
-	private static DriveTrain driveTrain;
-	public static SpeedController leftFront, leftBack, leftMiddle, rightFront, rightMiddle, rightBack;
 	public static final int TICKS_PER_ROTATION = 1420;
+	public static SpeedController leftFront, leftBack, leftMiddle, rightFront, rightMiddle, rightBack;
 	public static LancerPID PID_R,PID_L;
 	public static Encoder encoder_L,encoder_R; 
 	
@@ -38,18 +37,11 @@ public class DriveTrain extends Subsystem {
     	//encoder_R = new Encoder(RobotMap.ENC_R_A,RobotMap.ENC_R_B);
     }
 
-	public static DriveTrain getInstance(){
-		if(null == driveTrain){
-			driveTrain = new DriveTrain();
-		}
-		return driveTrain;
-	}
-
     public void initDefaultCommand() {
         setDefaultCommand(new MoveWithJoystick());
     }
 
-	public static void setLeftPowers(double power){
+	public void setLeftPowers(double power){
 		if(Math.abs(power) <= 1){
 			
 			//PID_L.setReference(power);
@@ -64,7 +56,7 @@ public class DriveTrain extends Subsystem {
 		}
 	}
 	
-	public static void setRightPowers(double power){
+	public void setRightPowers(double power){
 		if(Math.abs(power) <= 1){
 			
 			//PID_R.setReference(power);
@@ -79,7 +71,7 @@ public class DriveTrain extends Subsystem {
 		}
 	}
 	
-	public static void setAllPowers(double power){
+	public void setAllPowers(double power){
 		setLeftPowers(power);
 		setRightPowers(-power);
 	}
