@@ -12,9 +12,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SwitchGear extends Command {
 
 	boolean hasFinished = false;
+	public Pneumatics pneumatics;
 	
     public SwitchGear() {
-        requires(Pneumatics.getInstance());
+    	requires(Robot.pneumatics);
+    	this.pneumatics = Robot.pneumatics;
     }
 
     // Called just before this Command runs the first time
@@ -23,12 +25,12 @@ public class SwitchGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Pneumatics.getInstance().leftDoubleSolenoid.get() == DoubleSolenoid.Value.kForward){
-    		Pneumatics.getInstance().leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    		Pneumatics.getInstance().rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    	if(pneumatics.leftDoubleSolenoid.get() == DoubleSolenoid.Value.kForward){
+    		pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    		pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
     	}else{
-    		Pneumatics.getInstance().leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    		Pneumatics.getInstance().rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    		pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    		pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
     	}
     	
     	hasFinished = true;
