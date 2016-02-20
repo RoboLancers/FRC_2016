@@ -13,32 +13,27 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
 	
 	public enum IntakeValues {
-		OUTTAKE(-1), INTAKE(1), STOP(0);
+		OUTTAKE(-0.3), INTAKE(0.3), STOP(0);
 		
-		private int value;
+		private double value;
 		
-		private IntakeValues(int value){
+		private IntakeValues(double value){
 			this.value = value;
 		}
 		
-		public int getValue(){
+		public double getValue(){
 			return value;
 		}
 	}
    
 	private SpeedController intakeMotor;
-	private static Intake intake;
+	private CANTalon pivotMotor;
 	
-	private Intake(){
+	public Intake(){
 		intakeMotor = new CANTalon(RobotMap.INTAKE);
+		pivotMotor = new CANTalon(RobotMap.INTAKE_PIVOT);
 	}
 	
-	public static Intake getInstance(){
-		if(null == intake){
-			intake = new Intake();
-		}
-		return intake;
-	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -50,6 +45,22 @@ public class Intake extends Subsystem {
 		}else{
 			throw new MotorValueOutOfBoundsException();
 		}
+	}
+	
+	public void setPivotMotor(double power){
+		if(Math.abs(power) <= 1){
+			pivotMotor.set(power);
+		}else{
+			throw new MotorValueOutOfBoundsException();
+		}
+	}
+	
+	public void lockPivotMotor(){
+		pivotMotor.enableBrakeMode(true);
+	}
+	
+	public void unlockPivotMotor(){
+		pivotMotor.enableBrakeMode(false);
 	}
     
 }
