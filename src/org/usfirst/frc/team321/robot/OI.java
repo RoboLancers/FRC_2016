@@ -36,8 +36,10 @@ public class OI {
 		
 		driveBtn[BUTTON_A].whenPressed(new SwitchGear());
 		
-		//maniBtn[0].whileHeld(new UseIntake(IntakeValues.INTAKE));
-		//maniBtn[1].whileHeld(new UseIntake(IntakeValues.OUTTAKE));
+		maniBtn[0].whileHeld(new UseIntake(IntakeValues.INTAKE));
+		maniBtn[1].whileHeld(new UseIntake(IntakeValues.OUTTAKE));
+		maniBtn[2].whileHeld(new MoveIntakePivot(0.5));
+		maniBtn[3].whileHeld(new MoveIntakePivot(-0.5));
 	}
 	
 }
