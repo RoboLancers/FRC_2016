@@ -5,6 +5,7 @@ import org.usfirst.frc.team321.utilities.MotorValueOutOfBoundsException;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -25,12 +26,26 @@ public class Intake extends Subsystem {
 			return value;
 		}
 	}
+	
+	public enum IntakePivotValues {
+		UPWARDS(-0.3), DOWNWARDS(0.3), STOP(0);
+		
+		private double value;
+		
+		private IntakePivotValues(double value){
+			this.value = value;
+		}
+		
+		public double getValue(){
+			return value;
+		}
+	}
    
 	private SpeedController intakeMotor;
 	private CANTalon pivotMotor;
 	
 	public Intake(){
-		intakeMotor = new CANTalon(RobotMap.INTAKE);
+		intakeMotor = new Talon(RobotMap.INTAKE);
 		pivotMotor = new CANTalon(RobotMap.INTAKE_PIVOT);
 	}
 	
