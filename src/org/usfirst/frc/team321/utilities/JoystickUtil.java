@@ -94,4 +94,28 @@ public class JoystickUtil {
 	    
 	    return values;
 	}
+	
+	public static double getLeftTrigger(){
+		if(Math.abs(OI.driveStick.getRawAxis(2)) > tolerance){
+			return OI.driveStick.getRawAxis(2);
+		}else{
+			return 0;
+		}
+	}
+	
+	public static double getLeftTriggerNormalized(){
+		return RobotUtil.squareAndKeepSign(getLeftTrigger());
+	}
+	
+	public static double getRightTrigger(){
+		if(Math.abs(OI.driveStick.getRawAxis(3)) > tolerance){
+			return -OI.driveStick.getRawAxis(3);
+		}else{
+			return 0;
+		}
+	}
+	
+	public static double getRightTriggerNormalized(){
+		return RobotUtil.squareAndKeepSign(getRightTrigger());
+	}
 }
