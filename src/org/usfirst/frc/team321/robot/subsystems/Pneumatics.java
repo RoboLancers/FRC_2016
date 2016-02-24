@@ -48,33 +48,28 @@ public class Pneumatics extends Subsystem {
 	public void setRightDoubleSolenoid(DoubleSolenoid rightDoubleSolenoid) {
 		this.rightDoubleSolenoid = rightDoubleSolenoid;
 	}
-	public void regulateCompressor(){
-		/*
-		boolean isError = false;
-		
-		//Error Regulations
-		if((compressor.getCompressorCurrentTooHighFault() && !compressor.getCompressorCurrentTooHighStickyFault()) ||
-				(compressor.getCompressorNotConnectedFault() && !compressor.getCompressorNotConnectedStickyFault()) ||
-				(compressor.getCompressorShortedFault() && !compressor.getCompressorShortedStickyFault()))
-		{
-			//isError = true;
-		}else{
-			//isError = false; 
-		}
 
-		if(!compressor.getPressureSwitchValue() && !compressor.enabled() && !isError){
-			compressor.start();
+	public void regulateCompressor(){
+    	if(!compressor.getPressureSwitchValue() && !compressor.enabled()
+    			&& isCompressorSafeToUse()){
+    		compressor.start();
+    	}else if(compressor.getPressureSwitchValue() && compressor.enabled() 
+    			|| !isCompressorSafeToUse()){
+    		compressor.stop();
+    	}
+    }
+	
+	public boolean isCompressorSafeToUse(){	
+		if((compressor.getCompressorCurrentTooHighFault() && !compressor.getCompressorCurrentTooHighStickyFault()) ||
+  			(compressor.getCompressorNotConnectedFault() && !compressor.getCompressorNotConnectedStickyFault()) || 
+  			(compressor.getCompressorShortedFault() && !compressor.getCompressorShortedStickyFault())){
+			return false;
+	   	}else{
+	   		return true;
 		}
-		else if((compressor.getPressureSwitchValue() && compressor.enabled()) || isError){
-			compressor.stop();
-		}*/
-		
-		compressor.start();
-	}
+	}	
 	
 	public boolean getPressure(){
 		return compressor.getPressureSwitchValue();
 	}
-	
 }
-
