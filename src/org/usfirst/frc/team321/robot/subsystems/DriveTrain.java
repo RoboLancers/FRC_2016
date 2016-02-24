@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
    
-	public static final int TICKS_PER_ROTATION = 1420;
-	public static SpeedController leftFront, leftBack, leftMiddle, rightFront, rightMiddle, rightBack;
-	public static LancerPID PID_R,PID_L;
-	public static Encoder encoder_L,encoder_R; 
+	public final double TICKS_PER_ROTATION = 1420/56;
+	public SpeedController leftFront, leftBack, leftMiddle, rightFront, rightMiddle, rightBack;
+	public LancerPID PID_R,PID_L;
+	public Encoder encoder_L,encoder_R; 
 	
 	public DriveTrain(){
     	super("Drive Train");
@@ -33,8 +33,8 @@ public class DriveTrain extends Subsystem {
     	//PID_R = new LancerPID(.001,.001,.0005,TICKS_PER_ROTATION/36);
     	//PID_L = new LancerPID(.001,.001,.0005,TICKS_PER_ROTATION/36);
     	
-    	//encoder_L = new Encoder(RobotMap.ENC_L_A,RobotMap.ENC_L_B);
-    	//encoder_R = new Encoder(RobotMap.ENC_R_A,RobotMap.ENC_R_B);
+    	encoder_L = new Encoder(RobotMap.ENC_L_A,RobotMap.ENC_L_B);
+    	encoder_R = new Encoder(RobotMap.ENC_R_A,RobotMap.ENC_R_B);
     }
 
     public void initDefaultCommand() {
@@ -47,9 +47,9 @@ public class DriveTrain extends Subsystem {
 			//PID_L.setReference(power);
 			//double left = PID_L.calcPID(encoder_L.getRate());
 			
-			leftFront.set(power);
-			leftMiddle.set(power);
-			leftBack.set(power);
+			leftFront.set(power * 0.8);
+			leftMiddle.set(power * 0.8);
+			leftBack.set(power * 0.8);
 			
 		}else{
 			throw new MotorValueOutOfBoundsException();
@@ -62,9 +62,9 @@ public class DriveTrain extends Subsystem {
 			//PID_R.setReference(power);
 			//double right = PID_R.calcPID(encoder_R.getRate());
 			
-			rightFront.set(power);
-			rightMiddle.set(power);
-			rightBack.set(power);
+			rightFront.set(power * 0.8); 
+			rightMiddle.set(power * 0.8);
+			rightBack.set(power * 0.8);
 			
 		}else{
 			throw new MotorValueOutOfBoundsException();
