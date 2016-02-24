@@ -3,6 +3,7 @@ package org.usfirst.frc.team321.robot.commands;
 import org.usfirst.frc.team321.robot.Robot;
 import org.usfirst.frc.team321.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team321.utilities.JoystickUtil;
+import org.usfirst.frc.team321.utilities.RobotUtil;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -27,7 +28,7 @@ public class MoveWithJoystick extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(rcDrive){
-    		double[] motorValues = JoystickUtil.arcadeDrive(JoystickUtil.getLeftYAxisValue(),
+    		double[] motorValues = RobotUtil.arcadeDrive(JoystickUtil.getLeftYAxisValue(),
     				JoystickUtil.getRightXAxisValue(), true);
     		
     		driveTrain.setLeftPowers(motorValues[0]);
