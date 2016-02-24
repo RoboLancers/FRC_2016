@@ -3,6 +3,7 @@ package org.usfirst.frc.team321.robot;
 import org.usfirst.frc.team321.robot.commands.MoveIntakePivot;
 import org.usfirst.frc.team321.robot.commands.SwitchGear;
 import org.usfirst.frc.team321.robot.commands.UseIntake;
+import org.usfirst.frc.team321.robot.subsystems.Intake;
 import org.usfirst.frc.team321.robot.subsystems.Intake.IntakeValues;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -39,8 +40,8 @@ public class OI {
 		
 		maniBtn[0].whileHeld(new UseIntake(IntakeValues.INTAKE));
 		maniBtn[1].whileHeld(new UseIntake(IntakeValues.OUTTAKE));
-		maniBtn[2].whileHeld(new MoveIntakePivot(0.5));
-		maniBtn[3].whileHeld(new MoveIntakePivot(-0.5));
+		
+		
 	}
 	
 }
