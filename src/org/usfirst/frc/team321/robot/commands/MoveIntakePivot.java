@@ -1,39 +1,42 @@
 package org.usfirst.frc.team321.robot.commands;
 
+import org.usfirst.frc.team321.robot.OI;
 import org.usfirst.frc.team321.robot.Robot;
-import org.usfirst.frc.team321.robot.subsystems.Pneumatics;
+import org.usfirst.frc.team321.robot.subsystems.IntakePivot;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class SwitchGear extends Command {
+public class MoveIntakePivot extends Command {
 
 	boolean hasFinished = false;
-	public Pneumatics pneumatics;
+	double power;
+	IntakePivot intakePivot;
 	
-    public SwitchGear() {
-    	requires(Robot.pneumatics);
-    	this.pneumatics = Robot.pneumatics;
+    public MoveIntakePivot() {
+        requires(Robot.intakePivot);
+        this.intakePivot = Robot.intakePivot;
     }
-
+    
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//unlock the motor first
+    	hasFinished = false;
+    	intakePivot.unlockPivotMotor();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(pneumatics.leftDoubleSolenoid.get() == DoubleSolenoid.Value.kForward){
-    		pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    		pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    	}else{
-    		pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    		pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    	if(OI.driveStick.getRawAxis(2)>.1){
+    		intakePivot.setPivotMotor(OI.driveStick.getRawAxis(2)/2);
+    	}
+    	if(OI.driveStick.getRawAxis(3)>.1){
+    		intakePivot.setPivotMotor(-OI.driveStick.getRawAxis(3)/2);
     	}
     	
-    	hasFinished = true;
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -43,10 +46,15 @@ public class SwitchGear extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	intakePivot.setPivotMotor(0);
+    	intakePivot.lockPivotMotor();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	hasFinished = true;
+    	intakePivot.setPivotMotor(0);
+    	intakePivot.lockPivotMotor();
     }
 }

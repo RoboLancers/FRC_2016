@@ -20,4 +20,7 @@ public class RobotMap {
 	public static final int ENC_R_B = 3;
 	
 	public static final int INTAKE = 7;
+	public static final int INTAKE_PIVOT = 0;
+	
+	public static final int COMPRESSOR = 0;
 }

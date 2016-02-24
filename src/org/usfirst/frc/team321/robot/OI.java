@@ -1,6 +1,8 @@
 package org.usfirst.frc.team321.robot;
 
 import org.usfirst.frc.team321.robot.commands.SwitchGear;
+import org.usfirst.frc.team321.robot.commands.UseIntake;
+import org.usfirst.frc.team321.robot.subsystems.Intake.IntakeValues;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -34,8 +36,10 @@ public class OI {
 		
 		driveBtn[BUTTON_A].whenPressed(new SwitchGear());
 		
-		//maniBtn[0].whenPressed(new UseIntake(Intake.INTAKE));
-		//maniBtn[1].whenPressed(new UseIntake(Intake.OUTTAKE));
+		maniBtn[0].whileHeld(new UseIntake(IntakeValues.INTAKE));
+		maniBtn[1].whileHeld(new UseIntake(IntakeValues.OUTTAKE));
+		
+		
 	}
 	
 }

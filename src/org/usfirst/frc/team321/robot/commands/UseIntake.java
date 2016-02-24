@@ -1,6 +1,5 @@
 package org.usfirst.frc.team321.robot.commands;
 
-import org.usfirst.frc.team321.robot.OI;
 import org.usfirst.frc.team321.robot.Robot;
 import org.usfirst.frc.team321.robot.subsystems.Intake.IntakeValues;
 
@@ -15,21 +14,16 @@ public class UseIntake extends Command {
     public UseIntake(IntakeValues intakeValue) {
     	requires(Robot.intake);
     	
-    	this.intakeValue = intakeValue;
+       	this.intakeValue = intakeValue;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	hasFinished = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	if(!OI.maniBtn[0].get() && intakeValue == IntakeValues.INTAKE){
-    		hasFinished = true;
-    	}else if(!OI.maniBtn[1].get() && intakeValue == IntakeValues.OUTTAKE){
-    		hasFinished = true;
-    	}
-    	
+    protected void execute() {	
     	if(intakeValue == IntakeValues.INTAKE){
     		useIntake(IntakeValues.INTAKE.getValue());
     	}else {
@@ -50,6 +44,8 @@ public class UseIntake extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	useIntake(IntakeValues.STOP.getValue());
+    	hasFinished = true;
     }
     
     public void useIntake(double power){

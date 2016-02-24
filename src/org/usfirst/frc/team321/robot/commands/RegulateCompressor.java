@@ -1,22 +1,18 @@
 package org.usfirst.frc.team321.robot.commands;
 
 import org.usfirst.frc.team321.robot.Robot;
-import org.usfirst.frc.team321.robot.subsystems.Pneumatics;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class SwitchGear extends Command {
+public class RegulateCompressor extends Command {
 
-	boolean hasFinished = false;
-	public Pneumatics pneumatics;
-	
-    public SwitchGear() {
+    public RegulateCompressor() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     	requires(Robot.pneumatics);
-    	this.pneumatics = Robot.pneumatics;
     }
 
     // Called just before this Command runs the first time
@@ -25,20 +21,12 @@ public class SwitchGear extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(pneumatics.leftDoubleSolenoid.get() == DoubleSolenoid.Value.kForward){
-    		pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    		pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    	}else{
-    		pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    		pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    	}
-    	
-    	hasFinished = true;
+    	Robot.pneumatics.regulateCompressor();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return hasFinished;
+        return false;
     }
 
     // Called once after isFinished returns true
