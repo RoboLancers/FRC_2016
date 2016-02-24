@@ -15,7 +15,7 @@ public class UseIntake extends Command {
     public UseIntake(IntakeValues intakeValue) {
     	requires(Robot.intake);
     	
-    	this.intakeValue = intakeValue;
+       	this.intakeValue = intakeValue;
     }
 
     // Called just before this Command runs the first time
@@ -24,18 +24,11 @@ public class UseIntake extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	
-       	if(intakeValue == IntakeValues.INTAKE){
+    protected void execute() {	
+    	if(intakeValue == IntakeValues.INTAKE){
     		useIntake(IntakeValues.INTAKE.getValue());
     	}else {
     		useIntake(IntakeValues.OUTTAKE.getValue());
-    	}
-    	
-    	if(!OI.maniBtn[0].get()){
-    		hasFinished = true;
-    	}else if(!OI.maniBtn[1].get()){
-    		hasFinished = true;
     	}
     }
 
