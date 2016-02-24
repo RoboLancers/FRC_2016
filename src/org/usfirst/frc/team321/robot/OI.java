@@ -1,9 +1,7 @@
 package org.usfirst.frc.team321.robot;
 
-import org.usfirst.frc.team321.robot.commands.MoveIntakePivot;
 import org.usfirst.frc.team321.robot.commands.SwitchGear;
 import org.usfirst.frc.team321.robot.commands.UseIntake;
-import org.usfirst.frc.team321.robot.subsystems.Intake;
 import org.usfirst.frc.team321.robot.subsystems.Intake.IntakeValues;
 
 import edu.wpi.first.wpilibj.Joystick;

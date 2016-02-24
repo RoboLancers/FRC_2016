@@ -5,8 +5,6 @@ import org.usfirst.frc.team321.robot.commands.MoveIntakePivot;
 import org.usfirst.frc.team321.utilities.MotorValueOutOfBoundsException;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
