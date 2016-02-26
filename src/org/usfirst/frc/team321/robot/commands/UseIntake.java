@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class UseIntake extends Command {
 
 	boolean hasFinished;
-	//Intake.IntakeValues, but it's imported.
 	IntakeValues intakeValue;
 	
     public UseIntake(IntakeValues intakeValue) {
