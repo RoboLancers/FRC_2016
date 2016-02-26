@@ -21,6 +21,10 @@ public class UseIntake extends Command {
     	hasFinished = false;
     }
 
+    public void useIntake(double power){
+    	Robot.intake.setIntakeMotor(power);
+    }
+        
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {	
     	if(intakeValue == IntakeValues.INTAKE){
@@ -45,9 +49,5 @@ public class UseIntake extends Command {
     protected void interrupted() {
     	useIntake(IntakeValues.STOP.getValue());
     	hasFinished = true;
-    }
-    
-    public void useIntake(double power){
-    	Robot.intake.setIntakeMotor(power);
     }
 }
