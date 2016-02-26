@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveWithJoystick extends Command {
 	
-		boolean rcDrive = false;
-	DriveTrain driveTrain;
+	private boolean rcDrive = false;
+	private DriveTrain driveTrain;
 	
     public MoveWithJoystick() {
         requires(Robot.driveTrain);
