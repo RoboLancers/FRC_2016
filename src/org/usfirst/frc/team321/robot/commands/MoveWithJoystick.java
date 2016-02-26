@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveWithJoystick extends Command {
 	
-	//private JoystickControllerType joystickControllerType;
-	boolean rcDrive = false;
+		boolean rcDrive = false;
 	DriveTrain driveTrain;
 	
     public MoveWithJoystick() {
