@@ -19,11 +19,9 @@ public class SwitchGear extends Command {
     	this.pneumatics = Robot.pneumatics;
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(pneumatics.leftDoubleSolenoid.get() == DoubleSolenoid.Value.kForward){
     		pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
@@ -36,17 +34,13 @@ public class SwitchGear extends Command {
     	hasFinished = true;
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return hasFinished;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }
