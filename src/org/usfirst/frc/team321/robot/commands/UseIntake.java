@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class UseIntake extends Command {
 
-	boolean hasFinished;
-	IntakeValues intakeValue;
+	private boolean hasFinished;
+	private IntakeValues intakeValue;
 	
     public UseIntake(IntakeValues intakeValue) {
     	requires(Robot.intake);
