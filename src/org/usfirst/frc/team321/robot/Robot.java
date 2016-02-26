@@ -36,10 +36,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
     }
 	
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-		
-        String robotGear = (pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
+    private void setupSmartDashboard(){
+    	String robotGear = (pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
         		? "High Gear" : "Low Gear"; 
         SmartDashboard.putString("Robot Gear", robotGear);
         SmartDashboard.putNumber("Left Y Axis", JoystickUtil.getLeftYAxisValue());
@@ -47,7 +45,23 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putString("Right pneumatic gear", 
         		pneumatics.rightDoubleSolenoid.get().toString());
         SmartDashboard.putString("Left pneumatic gear", 
-        		pneumatics.leftDoubleSolenoid.get().toString()); 
+        		pneumatics.leftDoubleSolenoid.get().toString());
+        SmartDashboard.putBoolean("Direction of encoder left", driveTrain.encoder_L.getDirection());
+        SmartDashboard.putBoolean("Direction of encoder right", driveTrain.encoder_R.getDirection());
+        SmartDashboard.putNumber("Encoder left speed", driveTrain.encoder_L.getRate()/8000);
+        SmartDashboard.putNumber("Encoder right speed", driveTrain.encoder_R.getRate()/8000);
+        
+        SmartDashboard.putBoolean("Pneumatics pressure: ", Robot.pneumatics.getPressure());
+        SmartDashboard.putBoolean("Pneumatics switch value : ", Robot.pneumatics.compressor.getPressureSwitchValue());
+        SmartDashboard.putBoolean("Pneumatics state (is enabled?):", Robot.pneumatics.compressor.enabled());
+        SmartDashboard.putBoolean("Pnematics get closed loop control :", Robot.pneumatics.compressor.getClosedLoopControl());
+        SmartDashboard.putNumber("Pneumatics current ", Robot.pneumatics.compressor.getCompressorCurrent());
+    }
+    
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
+		
+        setupSmartDashboard();
 	}
 
     public void autonomousInit() {
@@ -73,25 +87,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
-        String robotGear = (pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
-        		? "High Gear" : "Low Gear"; 
-        SmartDashboard.putString("Robot Gear", robotGear);
-        SmartDashboard.putNumber("Left Y Axis", JoystickUtil.getLeftYAxisValue());
-        SmartDashboard.putNumber("Right Y Axis", JoystickUtil.getRightYAxisValue());
-        SmartDashboard.putString("Right pneumatic gear", 
-        		pneumatics.rightDoubleSolenoid.get().toString());
-        SmartDashboard.putString("Left pneumatic gear", 
-        		pneumatics.leftDoubleSolenoid.get().toString());
-        SmartDashboard.putBoolean("Direction of encoder left", driveTrain.encoder_L.getDirection());
-        SmartDashboard.putBoolean("Direction of encoder right", driveTrain.encoder_R.getDirection());
-        SmartDashboard.putNumber("Encoder left speed", driveTrain.encoder_L.getRate()/8000);
-        SmartDashboard.putNumber("Encoder right speed", driveTrain.encoder_R.getRate()/8000);
-        
-        SmartDashboard.putBoolean("Pneumatics pressure: ", Robot.pneumatics.getPressure());
-        SmartDashboard.putBoolean("Pneumatics switch value : ", Robot.pneumatics.compressor.getPressureSwitchValue());
-        SmartDashboard.putBoolean("Pneumatics state (is enabled?):", Robot.pneumatics.compressor.enabled());
-        SmartDashboard.putBoolean("Pnematics get closed loop control :", Robot.pneumatics.compressor.getClosedLoopControl());
-        SmartDashboard.putNumber("Pneumatics current ", Robot.pneumatics.compressor.getCompressorCurrent());
+        setupSmartDashboard();
     }
 
     public void testPeriodic() {
