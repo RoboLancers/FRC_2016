@@ -35,8 +35,6 @@ public class AutonomousMoveThroughDefense extends Command {
     	while (encoder.get() <= encoderTicksRequired) {
     		Robot.driveTrain.setAllPowers(0.5);
     	}
-    	//TODO: With EncoderTicksRequired, check for number of current encoder ticks to be less than 
-    	//TODO: encoderTicksRequired, and when it is greater, stop, cause you crossed 3.5 meters.
     }
 
     protected boolean isFinished() {
