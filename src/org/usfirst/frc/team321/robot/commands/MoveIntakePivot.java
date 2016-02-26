@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveIntakePivot extends Command {
 
-	boolean hasFinished = false;
-	double power;
-	IntakePivot intakePivot;
+	private boolean hasFinished = false;
+	private double power;
+	private IntakePivot intakePivot;
 	
     public MoveIntakePivot() {
         requires(Robot.intakePivot);
