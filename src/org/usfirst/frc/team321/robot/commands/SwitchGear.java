@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class SwitchGear extends Command {
 
-	boolean hasFinished = false;
-	public Pneumatics pneumatics;
+	private boolean hasFinished = false;
+	private Pneumatics pneumatics;
 	
     public SwitchGear() {
     	requires(Robot.pneumatics);
