@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 	
+	private SpeedController intakeMotor;
+		
 	public enum IntakeValues {
 		OUTTAKE(-1.0), INTAKE(1.0), STOP(0);
 		
@@ -24,9 +26,7 @@ public class Intake extends Subsystem {
 		public double getValue(){
 			return value;
 		}
-	}
-   
-	private SpeedController intakeMotor;
+	} 
 	
 	public Intake(){
 		intakeMotor = new Talon(RobotMap.INTAKE);
