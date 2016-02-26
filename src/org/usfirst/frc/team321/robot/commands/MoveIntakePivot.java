@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class MoveIntakePivot extends Command {
 
 	private boolean hasFinished = false;
-	private double power;
 	private IntakePivot intakePivot;
 	
     public MoveIntakePivot() {
