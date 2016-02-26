@@ -16,7 +16,6 @@ public class UseIntake extends Command {
        	this.intakeValue = intakeValue;
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     	hasFinished = false;
     }
@@ -25,7 +24,6 @@ public class UseIntake extends Command {
     	Robot.intake.setIntakeMotor(power);
     }
         
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {	
     	if(intakeValue == IntakeValues.INTAKE){
     		useIntake(IntakeValues.INTAKE.getValue());
@@ -34,18 +32,14 @@ public class UseIntake extends Command {
     	}
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return hasFinished;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     	useIntake(IntakeValues.STOP.getValue());
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     	useIntake(IntakeValues.STOP.getValue());
     	hasFinished = true;
