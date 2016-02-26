@@ -21,7 +21,7 @@ public class AutonomousMoveThroughDefense extends Command {
     	requires(Robot.driveTrain);
     	
     	//Only requires one encoder because values for both encoders
-    	//are approxamately the same if robot moves straight forward
+    	//are approximately the same if robot moves straight forward
     	this.encoder = encoder;
     }
 
