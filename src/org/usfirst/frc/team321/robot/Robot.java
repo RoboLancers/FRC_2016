@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team321.robot;
 
 import org.usfirst.frc.team321.robot.autonomous.AutonomousMoveThroughDefense;
