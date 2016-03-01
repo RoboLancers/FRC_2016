@@ -36,15 +36,17 @@ public class Robot extends IterativeRobot {
     }
 	
     private void setupSmartDashboard(){
-    	String robotGear = (pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
-        		? "High Gear" : "Low Gear"; 
-        SmartDashboard.putString("Robot Gear", robotGear);
         SmartDashboard.putNumber("Left Y Axis", JoystickUtil.getLeftYAxisValue());
         SmartDashboard.putNumber("Right Y Axis", JoystickUtil.getRightYAxisValue());
-        SmartDashboard.putString("Right pneumatic gear", 
-        		pneumatics.rightDoubleSolenoid.get().toString());
+        
+        String robotGear = (pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
+        		? "High Gear" : "Low Gear"; 
+        SmartDashboard.putString("Robot Gear", robotGear);
         SmartDashboard.putString("Left pneumatic gear", 
         		pneumatics.leftDoubleSolenoid.get().toString());
+        SmartDashboard.putString("Right pneumatic gear", 
+        		pneumatics.rightDoubleSolenoid.get().toString());
+        
         SmartDashboard.putBoolean("Direction of encoder left", driveTrain.encoder_L.getDirection());
         SmartDashboard.putBoolean("Direction of encoder right", driveTrain.encoder_R.getDirection());
         SmartDashboard.putNumber("Encoder left speed", driveTrain.encoder_L.getRate()/8000);
