@@ -5,7 +5,11 @@ import org.usfirst.frc.team321.robot.commands.MoveWithJoystick;
 import org.usfirst.frc.team321.utilities.LancerPID;
 import org.usfirst.frc.team321.utilities.MotorValueOutOfBoundsException;
 
+import com.kauailabs.nav6.frc.IMU;
+import com.kauailabs.navx_mxp.AHRS;
+
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,6 +23,13 @@ public class DriveTrain extends Subsystem {
 	public SpeedController leftFront, leftBack, leftMiddle, rightFront, rightMiddle, rightBack;
 	public LancerPID PID_R,PID_L;
 	public Encoder encoder_L,encoder_R; 
+	
+	SerialPort navXSerial;
+	byte update_rate_hz = 50;
+	public IMU navX;
+	
+	public double AngleValue;
+
 	
 	public DriveTrain(){
     	super("Drive Train");
@@ -35,6 +46,14 @@ public class DriveTrain extends Subsystem {
     	
     	encoder_L = new Encoder(RobotMap.ENC_L_A,RobotMap.ENC_L_B);
     	encoder_R = new Encoder(RobotMap.ENC_R_A,RobotMap.ENC_R_B);
+    	
+    	try{
+			navXSerial = new SerialPort(57600, SerialPort.Port.kMXP);
+			navX = new AHRS(navXSerial, update_rate_hz);
+
+		} catch( Exception e) {
+			//swallow the exception
+		}
     }
 
     public void initDefaultCommand() {
