@@ -12,7 +12,7 @@ public class AutonomousMoveThroughDefense extends Command {
 
 	//Numbers are in meters
 	//56:1
-	public final double DISTANCE = 3.5;
+	public final double DISTANCE = 3.0;
 	public final double DIAMETER = 0.254;
 
 	Encoder encoder;
