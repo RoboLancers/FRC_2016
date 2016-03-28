@@ -3,6 +3,7 @@ package org.usfirst.frc.team321.robot.subsystems;
 import org.usfirst.frc.team321.robot.RobotMap;
 import org.usfirst.frc.team321.utilities.MotorValueOutOfBoundsException;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
 	
 	private SpeedController intakeMotor;
+	public Encoder pivotEncoder;
 		
 	public enum IntakeValues {
 		OUTTAKE(-1.0), INTAKE(1.0), STOP(0);

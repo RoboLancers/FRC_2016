@@ -1,10 +1,10 @@
 package org.usfirst.frc.team321.robot.autonomous;
 
 import org.usfirst.frc.team321.robot.Robot;
-
-import com.kauailabs.navx_mxp.AHRS;
-
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.command.Command;
+
+
 
 public class ManualDrive extends Command{
 	
@@ -59,7 +59,7 @@ public class ManualDrive extends Command{
 				
 				double distanceError=((AHRS)Robot.driveTrain.navX).getDisplacementX()-distance;
 				
-				while(distanceError<10/*change*/){
+				while(distanceError<10){
 					
 					Robot.driveTrain.setLeftPowers(P_DISTANCE*distanceError);
 					Robot.driveTrain.setRightPowers(P_DISTANCE*distanceError);

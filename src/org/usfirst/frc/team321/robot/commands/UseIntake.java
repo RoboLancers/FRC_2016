@@ -21,7 +21,7 @@ public class UseIntake extends Command {
     }
 
     public void useIntake(double power){
-    	Robot.intake.setIntakeMotor(power);
+    	Robot.intake.setIntakeMotor(.75*power);
     }
         
     protected void execute() {	

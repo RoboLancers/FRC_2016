@@ -1,17 +1,20 @@
 package org.usfirst.frc.team321.robot;
 
+import org.usfirst.frc.team321.robot.autonomous.AutoMoveThroughLowbar;
 import org.usfirst.frc.team321.robot.autonomous.AutonomousMoveThroughDefense;
 import org.usfirst.frc.team321.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team321.robot.subsystems.Intake;
 import org.usfirst.frc.team321.robot.subsystems.IntakePivot;
 import org.usfirst.frc.team321.robot.subsystems.Pneumatics;
-import org.usfirst.frc.team321.utilities.JoystickUtil;
+
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
@@ -22,7 +25,8 @@ public class Robot extends IterativeRobot {
 	public static IntakePivot intakePivot;
 	
 	public static OI oi;
-
+	
+	public SendableChooser autoChooser;
     Command autonomousCommand;
 
     public void robotInit() {
@@ -33,33 +37,54 @@ public class Robot extends IterativeRobot {
     	intakePivot = new IntakePivot();
     	
 		oi = new OI();
+		
+		autoChooser = new SendableChooser();
+		autoChooser.addDefault("No Autonomous", null);
+		autoChooser.addObject("Drive Forward", new AutonomousMoveThroughDefense());
+		autoChooser.addObject("Drive Through Lowbar", new AutoMoveThroughLowbar(driveTrain.encoder_L, driveTrain.encoder_R));
+		
+		//ahrs = new AHRS(SerialPort.Port.kMXP);
+		SmartDashboard.putData("Auto Mode", autoChooser);
     }
 	
     private void setupSmartDashboard(){
-        SmartDashboard.putNumber("Left Y Axis", JoystickUtil.getLeftYAxisValue());
-        SmartDashboard.putNumber("Right Y Axis", JoystickUtil.getRightYAxisValue());
+        //SmartDashboard.putNumber("Left Y Axis", JoystickUtil.getLeftYAxisValue());
+        //SmartDashboard.putNumber("Right Y Axis", JoystickUtil.getRightYAxisValue());
         
-        String robotGear = (pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
-        		? "High Gear" : "Low Gear"; 
-        SmartDashboard.putString("Robot Gear", robotGear);
-        SmartDashboard.putString("Left pneumatic gear", 
-        		pneumatics.leftDoubleSolenoid.get().toString());
-        SmartDashboard.putString("Right pneumatic gear", 
-        		pneumatics.rightDoubleSolenoid.get().toString());
+        //String robotGear = (pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
+        //		? "High Gear" : "Low Gear"; 
+        //SmartDashboard.putString("Robot Gear", robotGear);
+        //SmartDashboard.putString("Left pneumatic gear", 
+        //		pneumatics.gearShiftSolenoid.get().toString());
         
-        SmartDashboard.putBoolean("Direction of encoder left", driveTrain.encoder_L.getDirection());
-        SmartDashboard.putBoolean("Direction of encoder right", driveTrain.encoder_R.getDirection());
+        //SmartDashboard.putBoolean("Direction of encoder left", driveTrain.encoder_L.getDirection());
+        //SmartDashboard.putBoolean("Direction of encoder right", driveTrain.encoder_R.getDirection());
+
+        SmartDashboard.putNumber("Left Displacement", driveTrain.encoder_L.getDistance());
+        SmartDashboard.putNumber("Right Displacement", driveTrain.encoder_R.getDistance());
         SmartDashboard.putNumber("Encoder left speed", driveTrain.encoder_L.getRate()/8000);
         SmartDashboard.putNumber("Encoder right speed", driveTrain.encoder_R.getRate()/8000);
+        SmartDashboard.putNumber("Roll", driveTrain.navX.getRoll());
+        SmartDashboard.putNumber("Pitch", driveTrain.navX.getPitch());
+        SmartDashboard.putNumber("Yaw", driveTrain.navX.getYaw());
+        SmartDashboard.putNumber("X", driveTrain.navX.getDisplacementX());
+        SmartDashboard.putNumber("Y", driveTrain.navX.getDisplacementY());
+        SmartDashboard.putNumber("Z", driveTrain.navX.getDisplacementZ());
         
-        SmartDashboard.putBoolean("Pneumatics pressure: ", Robot.pneumatics.getPressure());
-        SmartDashboard.putBoolean("Pneumatics switch value : ", Robot.pneumatics.compressor.getPressureSwitchValue());
-        SmartDashboard.putBoolean("Pneumatics state (is enabled?):", Robot.pneumatics.compressor.enabled());
-        SmartDashboard.putBoolean("Pnematics get closed loop control :", Robot.pneumatics.compressor.getClosedLoopControl());
-        SmartDashboard.putNumber("Pneumatics current ", Robot.pneumatics.compressor.getCompressorCurrent());
+        
+        
+        //SmartDashboard.putNumber("Intake Pivot", value);
+        
+        SmartDashboard.putBoolean("Gear", pneumatics.gearShiftSolenoid.get()==DoubleSolenoid.Value.kForward ? true : false);
+        
+        SmartDashboard.putNumber("Intake Pivot", Robot.intakePivot.pivotMotor.getEncPosition());
+        
     }
     
 	public void disabledPeriodic() {
+		//SmartDashboard.putNumber("Encoder left speed", driveTrain.encoder_L.getRate()/8000);
+        //SmartDashboard.putNumber("Encoder right speed", driveTrain.encoder_R.getRate()/8000);
+        
 		Scheduler.getInstance().run();
 		
         setupSmartDashboard();
@@ -67,7 +92,8 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
     	//Doesn't matter which encoder you use
-    	autonomousCommand = new AutonomousMoveThroughDefense(Robot.driveTrain.encoder_L);
+    	autonomousCommand = (Command) autoChooser.getSelected();// null;//new AutonomousMoveThroughDefense();//new AutoMoveThroughLowbar(Robot.driveTrain.encoder_L,Robot.driveTrain.encoder_R);
+    	
         if (autonomousCommand != null) {
         	autonomousCommand.start();
         }
@@ -75,6 +101,10 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
+        //SmartDashboard.putNumber("Encoder left speed", driveTrain.encoder_L.getRate()/8000);
+        //SmartDashboard.putNumber("Encoder right speed", driveTrain.encoder_R.getRate()/8000);
+        setupSmartDashboard();
     }
 
     public void teleopInit() {

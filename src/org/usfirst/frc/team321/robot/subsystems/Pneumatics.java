@@ -13,13 +13,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Pneumatics extends Subsystem {
     
-	public DoubleSolenoid leftDoubleSolenoid;
+	public DoubleSolenoid gearShiftSolenoid;
     public DoubleSolenoid rightDoubleSolenoid;
     public Compressor compressor;
 
 	public Pneumatics() {
-		leftDoubleSolenoid = new DoubleSolenoid(4, 5);
-		rightDoubleSolenoid = new DoubleSolenoid(6, 7);
+		gearShiftSolenoid = new DoubleSolenoid(4, 5);
+		
 		
 		compressor = new Compressor(RobotMap.COMPRESSOR);
 	}
@@ -30,23 +30,15 @@ public class Pneumatics extends Subsystem {
     
     public Value getGear(){
     	//Left solenoid is the one that determines the gear, since the right gear is inverted.
-    	return leftDoubleSolenoid.get();
+    	return gearShiftSolenoid.get();
     }
     
     public DoubleSolenoid getLeftDoubleSolenoid() {
-		return leftDoubleSolenoid;
+		return gearShiftSolenoid;
 	}
 
-	public void setLeftDoubleSolenoid(DoubleSolenoid leftDoubleSolenoid) {
-		this.leftDoubleSolenoid = leftDoubleSolenoid;
-	}
-
-	public DoubleSolenoid getRightDoubleSolenoid() {
-		return rightDoubleSolenoid;
-	}
-
-	public void setRightDoubleSolenoid(DoubleSolenoid rightDoubleSolenoid) {
-		this.rightDoubleSolenoid = rightDoubleSolenoid;
+	public void setLeftDoubleSolenoid(DoubleSolenoid val) {
+		gearShiftSolenoid = val;
 	}
 
 	public void regulateCompressor(){

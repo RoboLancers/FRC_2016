@@ -38,6 +38,9 @@ public class OI {
 		
 		maniBtn[0].whileHeld(new UseIntake(IntakeValues.INTAKE));
 		maniBtn[1].whileHeld(new UseIntake(IntakeValues.OUTTAKE));
+		
+		driveBtn[4].whileHeld(new UseIntake(IntakeValues.INTAKE));
+		driveBtn[5].whileHeld(new UseIntake(IntakeValues.OUTTAKE));
 	}
 }
 

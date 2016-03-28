@@ -23,12 +23,10 @@ public class SwitchGear extends Command {
     }
 
     protected void execute() {
-    	if(pneumatics.leftDoubleSolenoid.get() == DoubleSolenoid.Value.kForward){
-    		pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-    		pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+    	if(pneumatics.gearShiftSolenoid.get() == DoubleSolenoid.Value.kForward){
+    		pneumatics.gearShiftSolenoid.set(DoubleSolenoid.Value.kReverse);
     	}else{
-    		pneumatics.leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-    		pneumatics.rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+    		pneumatics.gearShiftSolenoid.set(DoubleSolenoid.Value.kForward);
     	}
     	
     	hasFinished = true;

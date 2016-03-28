@@ -29,9 +29,13 @@ public class MoveIntakePivot extends Command {
     	if(OI.driveStick.getRawAxis(2)>.1){
     		intakePivot.setPivotMotor(OI.driveStick.getRawAxis(2)/2);
     	}
-    	if(OI.driveStick.getRawAxis(3)>.1){
+    	else if(OI.driveStick.getRawAxis(3)>.1){
     		intakePivot.setPivotMotor(-OI.driveStick.getRawAxis(3)/2);
     	}
+    	else{
+    		intakePivot.setPivotMotor(0); 
+    		intakePivot.lockPivotMotor();
+    		}
     }
 
     protected boolean isFinished() {
