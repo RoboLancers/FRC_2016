@@ -25,7 +25,6 @@ public class DriveTrain extends Subsystem {
 	public AHRS navX;
 	
 	public double AngleValue;
-
 	
 	public DriveTrain(){
     	super("Drive Train");
@@ -46,14 +45,12 @@ public class DriveTrain extends Subsystem {
     	encoder_L.reset();
     	encoder_R.reset();
     	
-    	
     	try{
 			//navXSerial = new SerialPort(57600, SerialPort.Port.kMXP);
     		//There's only one port for the NavX! Serial Port is unneeded
 			navX = new AHRS(SerialPort.Port.kMXP);
 			navX.reset();
 			navX.resetDisplacement();
-
 		} catch( Exception e) {
 			//swallow the exception
 		} 
@@ -74,7 +71,6 @@ public class DriveTrain extends Subsystem {
 			leftBack.set(power * 0.8);
 			
 		}else{
-			//throw new MotorValueOutOfBoundsException();
 			leftFront.set(Math.abs(power)/power);
 			leftMiddle.set(Math.abs(power)/power);
 			leftBack.set(Math.abs(power)/power);
@@ -93,7 +89,6 @@ public class DriveTrain extends Subsystem {
 			rightBack.set(power * 0.8);
 			
 		}else{
-			//throw new MotorValueOutOfBoundsException();
 			rightFront.set(Math.abs(power)/power);
 			rightMiddle.set(Math.abs(power)/power);
 			rightBack.set(Math.abs(power)/power);
@@ -105,4 +100,3 @@ public class DriveTrain extends Subsystem {
 		setRightPowers(-power);
 	}
 }
-

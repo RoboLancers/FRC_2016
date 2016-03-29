@@ -26,16 +26,14 @@ public class AutoMoveThroughLowbar extends Command {
 	private boolean firstPassDrive;
 	private boolean isDriving;
 
-
 	Encoder encoder_R;
 	Encoder encoder_L;
 	Encoder encoder_P;
 
-	public AutoMoveThroughLowbar(Encoder encoder_L, Encoder encoder_R /* ,Encoder encoder_P */) {
+	public AutoMoveThroughLowbar(Encoder encoder_L, Encoder encoder_R) {
 		requires(Robot.driveTrain);
 		this.encoder_R = encoder_R;
 		this.encoder_L = encoder_L;
-		//this.encoder_P = encoder_P;
 
 		hasFinished=false;
 		operatingPivot = true;
@@ -44,10 +42,6 @@ public class AutoMoveThroughLowbar extends Command {
 
 		autoPID_L = new LancerPID(1,1,0);
 		autoPID_R = new LancerPID(1,1,0);
-
-		//double rotationsRequired = DISTANCE/DIAMETER;
-		//double encoderTicksRequired = rotationsRequired * Robot.driveTrain.TICKS_PER_ROTATION;
-
 	}
 
 	protected void initialize() {
@@ -70,8 +64,6 @@ public class AutoMoveThroughLowbar extends Command {
 				time = System.currentTimeMillis();	
 				firstPassDrive = false;
 			}else{
-
-
 				autoPID_L.setReference(.5);
 				autoPID_R.setReference(.5);
 
@@ -96,6 +88,5 @@ public class AutoMoveThroughLowbar extends Command {
 		Robot.driveTrain.setAllPowers(0);
 		Robot.intakePivot.setPivotMotor(0);
 		Robot.intakePivot.lockPivotMotor();
-		
 	}
 }

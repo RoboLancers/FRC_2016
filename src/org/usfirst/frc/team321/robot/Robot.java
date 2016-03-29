@@ -48,43 +48,25 @@ public class Robot extends IterativeRobot {
     }
 	
     private void setupSmartDashboard(){
-        //SmartDashboard.putNumber("Left Y Axis", JoystickUtil.getLeftYAxisValue());
-        //SmartDashboard.putNumber("Right Y Axis", JoystickUtil.getRightYAxisValue());
-        
-        //String robotGear = (pneumatics.getGear() == DoubleSolenoid.Value.kForward) 
-        //		? "High Gear" : "Low Gear"; 
-        //SmartDashboard.putString("Robot Gear", robotGear);
-        //SmartDashboard.putString("Left pneumatic gear", 
-        //		pneumatics.gearShiftSolenoid.get().toString());
-        
-        //SmartDashboard.putBoolean("Direction of encoder left", driveTrain.encoder_L.getDirection());
-        //SmartDashboard.putBoolean("Direction of encoder right", driveTrain.encoder_R.getDirection());
-
         SmartDashboard.putNumber("Left Displacement", driveTrain.encoder_L.getDistance());
         SmartDashboard.putNumber("Right Displacement", driveTrain.encoder_R.getDistance());
         SmartDashboard.putNumber("Encoder left speed", driveTrain.encoder_L.getRate()/8000);
         SmartDashboard.putNumber("Encoder right speed", driveTrain.encoder_R.getRate()/8000);
+
         SmartDashboard.putNumber("Roll", driveTrain.navX.getRoll());
         SmartDashboard.putNumber("Pitch", driveTrain.navX.getPitch());
         SmartDashboard.putNumber("Yaw", driveTrain.navX.getYaw());
+
         SmartDashboard.putNumber("X", driveTrain.navX.getDisplacementX());
         SmartDashboard.putNumber("Y", driveTrain.navX.getDisplacementY());
         SmartDashboard.putNumber("Z", driveTrain.navX.getDisplacementZ());
         
-        
-        
-        //SmartDashboard.putNumber("Intake Pivot", value);
-        
         SmartDashboard.putBoolean("Gear", pneumatics.gearShiftSolenoid.get()==DoubleSolenoid.Value.kForward ? true : false);
         
         SmartDashboard.putNumber("Intake Pivot", Robot.intakePivot.pivotMotor.getEncPosition());
-        
     }
     
 	public void disabledPeriodic() {
-		//SmartDashboard.putNumber("Encoder left speed", driveTrain.encoder_L.getRate()/8000);
-        //SmartDashboard.putNumber("Encoder right speed", driveTrain.encoder_R.getRate()/8000);
-        
 		Scheduler.getInstance().run();
 		
         setupSmartDashboard();
@@ -101,9 +83,6 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        
-        //SmartDashboard.putNumber("Encoder left speed", driveTrain.encoder_L.getRate()/8000);
-        //SmartDashboard.putNumber("Encoder right speed", driveTrain.encoder_R.getRate()/8000);
         setupSmartDashboard();
     }
 

@@ -2,16 +2,11 @@ package org.usfirst.frc.team321.robot.subsystems;
 
 import org.usfirst.frc.team321.robot.RobotMap;
 import org.usfirst.frc.team321.robot.commands.MoveIntakePivot;
-import org.usfirst.frc.team321.utilities.MotorValueOutOfBoundsException;
-
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class IntakePivot extends Subsystem {
 
 	public CANTalon pivotMotor;
@@ -33,12 +28,9 @@ public class IntakePivot extends Subsystem {
 	
 	public void setPivotMotor(double power){
 		if(isFirstPass == false){
-			
 			if(Math.abs(power) <= 1){
 				pivotMotor.set(/*lastPower+.8*(power-lastPower)*/ power);
 				lastPower=power;
-			}else{
-				throw new MotorValueOutOfBoundsException();
 			}
 		}else{
 			lastPower=power;
@@ -58,4 +50,3 @@ public class IntakePivot extends Subsystem {
 		return pivotMotor.getBrakeEnableDuringNeutral();
 	}
 }
-

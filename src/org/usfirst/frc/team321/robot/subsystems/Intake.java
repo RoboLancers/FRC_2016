@@ -1,16 +1,11 @@
 package org.usfirst.frc.team321.robot.subsystems;
 
 import org.usfirst.frc.team321.robot.RobotMap;
-import org.usfirst.frc.team321.utilities.MotorValueOutOfBoundsException;
-
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class Intake extends Subsystem {
 	
 	private SpeedController intakeMotor;
@@ -40,9 +35,6 @@ public class Intake extends Subsystem {
 	public void setIntakeMotor(double power) {
 		if(Math.abs(power) <= 1){
 			intakeMotor.set(power); 
-		}else{
-			throw new MotorValueOutOfBoundsException();
 		}
 	}
 }
-

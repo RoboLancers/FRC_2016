@@ -8,9 +8,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class Pneumatics extends Subsystem {
     
 	public DoubleSolenoid gearShiftSolenoid;
@@ -19,7 +16,6 @@ public class Pneumatics extends Subsystem {
 
 	public Pneumatics() {
 		gearShiftSolenoid = new DoubleSolenoid(4, 5);
-		
 		
 		compressor = new Compressor(RobotMap.COMPRESSOR);
 	}
