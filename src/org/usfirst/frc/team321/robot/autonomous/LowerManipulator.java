@@ -1,9 +1,13 @@
 package org.usfirst.frc.team321.robot.autonomous;
 
 import org.usfirst.frc.team321.robot.Robot;
+import org.usfirst.frc.team321.utilities.TimeTracker;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ * 
+ * @author Henry Dang
  *
  */
 public class LowerManipulator extends Command {
@@ -21,9 +25,10 @@ public class LowerManipulator extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double currentTime = System.currentTimeMillis();
     	
-    	while(System.currentTimeMillis() - currentTime < 1000){
+    	TimeTracker timeTracker = new TimeTracker(1000);
+    	
+    	while(!timeTracker.hasEnded()){
         	Robot.intakePivot.setPivotMotor(-1);
     	}
     	
