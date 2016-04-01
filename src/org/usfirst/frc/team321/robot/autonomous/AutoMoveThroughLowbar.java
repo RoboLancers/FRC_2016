@@ -13,7 +13,7 @@ public class AutoMoveThroughLowbar extends Command {
 
 	//Numbers are in meters
 	//56:1
-	//public final double DISTANCE = 3.0;
+	//public final double DISTANCE = 2.18;
 	//public final double DIAMETER = 0.254;
 
 	private LancerPID autoPID_L;
